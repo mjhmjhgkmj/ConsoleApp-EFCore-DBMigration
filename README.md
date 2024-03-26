@@ -2,15 +2,19 @@
 
 установите пакеты nuget 
 скомпилируйте
-добавьте или измените поля в public record User(int Id, string? Name, int Age, int S);
+добавьте или измените поля в 
 
-Visual Studio - средства - диспетчер пакетов - консоль дтспетчера пакетов
+public record User(int Id, string? Name, int Age, int S);
+
+далее:
+Visual Studio - средства - диспетчер пакетов - консоль дтспетчера пакетов,
 вводите команды
-Add-Migration <migration_name>
+> Add-Migration <migration_name>
 
 если ошибка то провить текущий путь в консоли и перейти в папку проекта (имя папки начинается на c) - для каких то команд это критично
-dir
-cd cd c*
+> dir
+
+> cd c* (или cd ConsoleApp-EFCore-DBMigration)
 
 применить изменения к тестовой БД
 Update-Database
