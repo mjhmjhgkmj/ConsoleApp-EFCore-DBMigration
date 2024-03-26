@@ -23,25 +23,23 @@ internal class Program
     private static void Main(string[] args)
     {
         //Console.WriteLine("Hello, World!");
-        using (ApplicationContext db = new ApplicationContext())
+        using ApplicationContext db = new ApplicationContext();
+        // создаем два объекта User
+        User tom = new(3, "Tom", 33, 1);
+        User alice = new(4, "Alice", 26, 2);
+
+        // добавляем их в бд
+        db.Users.Add(tom);
+        db.Users.Add(alice);
+        db.SaveChanges();
+        Console.WriteLine("Объекты успешно сохранены");
+
+        // получаем объекты из бд и выводим на консоль
+        var users = db.Users.ToList();
+        Console.WriteLine("Список объектов:");
+        foreach (User u in users)
         {
-            // создаем два объекта User
-            User tom = new(3, "Tom", 33,1);
-            User alice = new(4, "Alice", 26,2);
-
-            // добавляем их в бд
-            db.Users.Add(tom);
-            db.Users.Add(alice);
-            db.SaveChanges();
-            Console.WriteLine("Объекты успешно сохранены");
-
-            // получаем объекты из бд и выводим на консоль
-            var users = db.Users.ToList();
-            Console.WriteLine("Список объектов:");
-            foreach (User u in users)
-            {
-                Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-            }
+            Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
         }
     }
 }
